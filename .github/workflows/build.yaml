@@ -14,11 +14,11 @@ jobs:
       - name: Install Cross
         run: |
           curl -SsL https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-          cargo binstall cargo
+          cargo binstall cross
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build the binary for x86_64
-        run: cross build --release --target x86_64-unknown-linux-musl
+        run: ~/.cargo/bin/cross build --release --target x86_64-unknown-linux-musl
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -31,11 +31,11 @@ jobs:
       - name: Install Cross
         run: |
           curl -SsL https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-          cargo binstall cargo
+          cargo binstall cross
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build the binary for arm64
-        run: cross build --release --target aarch64-unknown-linux-musl
+        run: ~/.cargo/bin/cross build --release --target aarch64-unknown-linux-musl
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -48,11 +48,11 @@ jobs:
       - name: Install Cross
         run: |
           curl -SsL https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-          cargo binstall cargo
+          cargo binstall cross
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build the binary for armv7
-        run: cross build --release --target armv7-unknown-linux-musl
+        run: ~/.cargo/bin/cross build --release --target armv7-unknown-linux-musl
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
