@@ -65,6 +65,19 @@ jobs:
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
-      - name: Tree
+      - name: Create Docker image
         shell: bash
-        run: tree
+        run: |
+          docker buildx create --use
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t darktohka/linux-release-fetcher:latest --push -f- . <<EOF
+          FROM scratch
+          COPY --platform=linux/amd64 binary-x86_64/linux-release-fetcher /linux-release-fetcher
+          COPY --platform=linux/arm64 binary-aarch64/linux-release-fetcher /linux-release-fetcher
+          COPY --platform=linux/arm/v7 binary-armv7/linux-release-fetcher /linux-release-fetcher
+          ENTRYPOINT ["/linux-release-fetcher"]
+          EOF
+      - name: Login to registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: Push the image
+        run: |
+          docker push "${{ secrets.DOCKER_TAG }}:latest"
