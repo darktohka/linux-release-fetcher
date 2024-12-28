@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Cross
-        run: cargo install cross --git https://github.com/cross-rs/cross
+        run: |
+          curl -SsL https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+          cargo binstall cargo
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build the binary for x86_64
@@ -27,7 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Cross
-        run: cargo install cross --git https://github.com/cross-rs/cross
+        run: |
+          curl -SsL https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+          cargo binstall cargo
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build the binary for arm64
@@ -42,7 +46,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Cross
-        run: cargo install cross --git https://github.com/cross-rs/cross
+        run: |
+          curl -SsL https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+          cargo binstall cargo
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build the binary for armv7
