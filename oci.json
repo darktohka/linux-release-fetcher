@@ -1,0 +1,41 @@
+{
+  "name": "darktohka/linux-release-fetcher",
+  "tags": ["latest"],
+  "config": {
+    "entrypoint": ["/linux-release-fetcher"],
+    "workingDir": "/"
+  },
+  "platforms": [
+    {
+      "architecture": "amd64",
+      "layers": [
+        {
+          "type": "dir",
+          "source": "./binary-x86_64",
+          "comment": "https://github.com/darktohka/linux-release-fetcher"
+        }
+      ]
+    },
+    {
+      "architecture": "arm64",
+      "layers": [
+        {
+          "type": "dir",
+          "source": "./binary-aarch64",
+          "comment": "https://github.com/darktohka/linux-release-fetcher"
+        }
+      ]
+    },
+    {
+      "architecture": "arm",
+      "variant": "v7",
+      "layers": [
+        {
+          "type": "dir",
+          "source": "./binary-armv7",
+          "comment": "https://github.com/darktohka/linux-release-fetcher"
+        }
+      ]
+    }
+  ]
+}
