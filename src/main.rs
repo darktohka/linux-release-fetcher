@@ -67,9 +67,16 @@ async fn main() {
 
     let app = Router::new()
         .route("/kernel/mainline", get(mainline_handler))
+        .route("/kernel/mainline.tar.gz", get(mainline_handler))
+        .route("/kernel/mainline.tar.xz", get(mainline_handler))
         .route("/kernel/stable", get(stable_handler))
-        .route("/kernel/next", get(next_handler))
+        .route("/kernel/stable.tar.gz", get(stable_handler))
+        .route("/kernel/stable.tar.xz", get(stable_handler))
+        .route("/kernel/next.tar.gz", get(next_handler))
+        .route("/kernel/next.tar.xz", get(next_handler))
         .route("/kernel/stable/zfs", get(zfs_stable_handler))
+        .route("/kernel/stable/zfs.tar.gz", get(zfs_stable_handler))
+        .route("/kernel/stable/zfs.tar.xz", get(zfs_stable_handler))
         .with_state(app_state);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
